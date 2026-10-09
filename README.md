@@ -16,3 +16,7 @@ Cours Docker Ynov — octobre 2026.
 | Site exercice 03 | http://localhost:8081 |
 | Adminer | http://localhost:8082 |
 | Site exercice 06 | http://localhost:8083 |
+| kennelDB (ex07) | localhost:3307 |
+| Dogs API (ex08) | http://localhost:8090 |
+| CRUD API (ex09) | http://localhost:8091 |
+| Logs API (ex09) | http://localhost:8092 |

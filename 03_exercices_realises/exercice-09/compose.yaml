@@ -1,0 +1,61 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: ex09-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: dogsdb
+      MYSQL_USER: dogs
+      MYSQL_PASSWORD: dogspass
+    ports:
+      - "3309:3306"
+    volumes:
+      - ex09-mysql-data:/var/lib/mysql
+    networks:
+      - ex09-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-prootpass"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  logs-api:
+    build: ./logs-api
+    image: ex09-logs-api
+    container_name: ex09-logs-api
+    restart: unless-stopped
+    ports:
+      - "8092:8080"
+    volumes:
+      - ex09-logs-data:/data
+    networks:
+      - ex09-net
+
+  crud-api:
+    build: ./crud-api
+    image: ex09-crud-api
+    container_name: ex09-crud-api
+    restart: unless-stopped
+    ports:
+      - "8091:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/dogsdb?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: dogs
+      SPRING_DATASOURCE_PASSWORD: dogspass
+      LOGS_API_URL: http://logs-api:8080
+    depends_on:
+      mysql:
+        condition: service_healthy
+      logs-api:
+        condition: service_started
+    networks:
+      - ex09-net
+
+volumes:
+  ex09-mysql-data:
+  ex09-logs-data:
+
+networks:
+  ex09-net:
+    name: ex09-net

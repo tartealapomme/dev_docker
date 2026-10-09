@@ -1,6 +1,6 @@
 # Exercices Docker réalisés
 
-Solutions et déploiements des 6 exercices du dossier `02_exercices_sujet`.
+Solutions des exercices du dossier `02_exercices_sujet`.
 
 | Exercice | Contenu du dossier | Image / ressources Docker | Accès |
 |----------|--------------------|---------------------------|-------|
@@ -10,6 +10,9 @@ Solutions et déploiements des 6 exercices du dossier `02_exercices_sujet`.
 | 04 | `run.ps1` + README | image `ubuntu-ping`, réseau `ex04-net` | DNS interne |
 | 05 | `compose.yaml`, `run.ps1` | MySQL + Adminer, volume `ex05-mysql-data` | http://localhost:8082 |
 | 06 | `site/`, `run.ps1` | bind mount vers `site/` | http://localhost:8083 |
+| 07 | `Dockerfile`, `init.sql`, `run.ps1` | image `kennel-mysql` | localhost:3307 |
+| 08 | Spring Boot API + `compose.yaml` | `ex08-dogs-api` + MySQL | http://localhost:8090 |
+| 09 | CRUD API + Logs API + compose | `ex09-crud-api`, `ex09-logs-api` + MySQL | http://localhost:8091 / 8092 |
 
 ## Relancer un exercice
 
