@@ -1,0 +1,5 @@
+target
+.git
+.env
+*.md
+run.ps1

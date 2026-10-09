@@ -13,6 +13,7 @@ Solutions des exercices du dossier `02_exercices_sujet`.
 | 07 | `Dockerfile`, `init.sql`, `run.ps1` | image `kennel-mysql` | localhost:3307 |
 | 08 | Spring Boot API + `compose.yaml` | `ex08-dogs-api` + MySQL | http://localhost:8090 |
 | 09 | CRUD API + Logs API + compose | `ex09-crud-api`, `ex09-logs-api` + MySQL | http://localhost:8091 / 8092 |
+| 10 | Notes app + `.env` + `docker-compose.yml` | `ex10-notes-app` + PostgreSQL + volumes | http://localhost:8080 |
 
 ## Relancer un exercice
 

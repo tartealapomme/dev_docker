@@ -12,7 +12,7 @@ Cours Docker Ynov — octobre 2026.
 
 | Service | URL |
 |---------|-----|
-| 2048 | http://localhost:8080 |
+| Notes app (ex10) | http://localhost:8080 |
 | Site exercice 03 | http://localhost:8081 |
 | Adminer | http://localhost:8082 |
 | Site exercice 06 | http://localhost:8083 |
