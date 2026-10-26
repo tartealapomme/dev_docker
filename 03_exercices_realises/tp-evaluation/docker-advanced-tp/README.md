@@ -8,6 +8,11 @@ Projet unique. Les exercices s'ajoutent dans ce dossier.
 - Exercice 2 : trois réseaux.
 - Exercice 3 : volumes nommés. Les données survivent à `docker compose down` puis `docker compose up -d`.
 - Exercice 4 : Nginx est le seul point d'entrée. Configuration dans `nginx/default.conf`. WordPress n'a aucun port publié.
+- Exercice 5 : healthchecks. WordPress attend MariaDB `healthy`, Nginx attend WordPress `healthy`.
+
+Un conteneur `Up` a seulement son processus principal lancé. Il est opérationnel quand le healthcheck passe : MariaDB accepte une connexion et InnoDB est prêt, WordPress répond HTTP 200, Nginx sert le site. `depends_on: condition: service_healthy` n'agit qu'au démarrage.
+
+Après `docker stop` sur MariaDB, WordPress reste `running` et http://localhost:8080 répond déjà 500, alors que le healthcheck affiche encore `healthy` pendant quelques intervalles. Il passe ensuite `unhealthy`. Après `docker start`, la page revient avant que les healthchecks ne repassent tous `healthy`. Le statut Docker suit donc l'état réel avec un délai.
 
 | Volume | Point de montage | Contenu |
 |--------|------------------|---------|
