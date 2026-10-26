@@ -5,6 +5,9 @@ services:
     image: nginx:1.27.5-alpine
     container_name: gestion-interne-nginx
     restart: unless-stopped
+    networks:
+      - proxy
+      - app
 
   wordpress:
     image: wordpress:6.8.3-apache
@@ -19,6 +22,9 @@ services:
       WORDPRESS_DB_NAME: ${MARIADB_DATABASE}
     depends_on:
       - mariadb
+    networks:
+      - app
+      - data
 
   mariadb:
     image: mariadb:11.8.3
@@ -29,3 +35,13 @@ services:
       MARIADB_DATABASE: ${MARIADB_DATABASE}
       MARIADB_USER: ${MARIADB_USER}
       MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+    networks:
+      - data
+
+networks:
+  proxy:
+    name: gestion-interne-proxy
+  app:
+    name: gestion-interne-app
+  data:
+    name: gestion-interne-data
