@@ -11,6 +11,16 @@ Projet unique. Les exercices s'ajoutent dans ce dossier.
 - Exercice 5 : healthchecks. WordPress attend MariaDB `healthy`, Nginx attend WordPress `healthy`.
 - Exercice 6 : mots de passe dans des secrets Compose (`secrets/*.txt`, ignorés par Git). Le Compose ne contient que les chemins `*_FILE`. Modèle : `.env.example`.
 - Exercice 7 : durcissement. Nginx tourne avec l'uid `101`, système de fichiers en lecture seule, toutes les capacités retirées. WordPress et MariaDB ont un filesystem en lecture seule hors volumes, des capacités réduites, et des limites mémoire / CPU. Aucun conteneur n'est `privileged`.
+- Exercice 8 : `scripts/backup.sh` écrit un dump logique MariaDB et une archive `wp-content` + `wp-config.php` dans `backups/<horodatage>/`. Ce dossier est ignoré par Git.
+
+## Sauvegarde et restauration
+
+```bash
+bash scripts/backup.sh
+bash scripts/restore.sh backups/20261026-122600
+```
+
+La restauration réinjecte le dump dans la base `gestion`, puis réécrit les fichiers applicatifs dans `/var/www/html`. Une donnée supprimée après la sauvegarde réapparaît. Les sauvegardes restent sur la machine hôte, hors du dépôt.
 
 | Service | Utilisateur | Lecture seule | Capacités | Limites | Exception |
 |---------|-------------|---------------|-----------|---------|-----------|
