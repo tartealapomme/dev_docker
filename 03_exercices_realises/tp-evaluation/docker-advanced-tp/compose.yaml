@@ -22,6 +22,8 @@ services:
       WORDPRESS_DB_NAME: ${MARIADB_DATABASE}
     depends_on:
       - mariadb
+    volumes:
+      - wordpress-data:/var/www/html
     networks:
       - app
       - data
@@ -35,8 +37,16 @@ services:
       MARIADB_DATABASE: ${MARIADB_DATABASE}
       MARIADB_USER: ${MARIADB_USER}
       MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+    volumes:
+      - mariadb-data:/var/lib/mysql
     networks:
       - data
+
+volumes:
+  wordpress-data:
+    name: gestion-interne-wordpress-data
+  mariadb-data:
+    name: gestion-interne-mariadb-data
 
 networks:
   proxy:

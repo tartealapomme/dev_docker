@@ -6,6 +6,12 @@ Projet unique. Les exercices s'ajoutent dans ce dossier.
 
 - Exercice 1 : Nginx, WordPress, MariaDB. Images épinglées, `restart: unless-stopped`, paramètres dans `.env`, projet Compose `gestion-interne`.
 - Exercice 2 : trois réseaux.
+- Exercice 3 : volumes nommés. Les données survivent à `docker compose down` puis `docker compose up -d`.
+
+| Volume | Point de montage | Contenu |
+|--------|------------------|---------|
+| `gestion-interne-wordpress-data` | `/var/www/html` | Fichiers WordPress, thèmes, plugins, médias |
+| `gestion-interne-mariadb-data` | `/var/lib/mysql` | Données MariaDB |
 
 | Réseau | Conteneurs | Rôle |
 |--------|------------|------|
@@ -34,3 +40,13 @@ docker exec gestion-interne-nginx wget -q -O - --timeout=3 http://mariadb:3306/
 ```
 
 Le dernier `wget` doit échouer : Nginx ne résout pas `mariadb`.
+
+## Vérifications persistance
+
+```powershell
+docker volume ls --filter name=gestion-interne
+docker inspect gestion-interne-wordpress --format "{{range .Mounts}}{{.Name}} -> {{.Destination}}{{println}}{{end}}"
+docker inspect gestion-interne-mariadb --format "{{range .Mounts}}{{.Name}} -> {{.Destination}}{{println}}{{end}}"
+```
+
+Après création d'un article : `docker compose down`, puis `docker compose up -d`. L'article et les fichiers de `wp-content` sont toujours là. Ne pas utiliser `down -v`.
