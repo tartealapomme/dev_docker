@@ -7,6 +7,7 @@ Projet unique. Les exercices s'ajoutent dans ce dossier.
 - Exercice 1 : Nginx, WordPress, MariaDB. Images épinglées, `restart: unless-stopped`, paramètres dans `.env`, projet Compose `gestion-interne`.
 - Exercice 2 : trois réseaux.
 - Exercice 3 : volumes nommés. Les données survivent à `docker compose down` puis `docker compose up -d`.
+- Exercice 4 : Nginx est le seul point d'entrée. Configuration dans `nginx/default.conf`. WordPress n'a aucun port publié.
 
 | Volume | Point de montage | Contenu |
 |--------|------------------|---------|
@@ -28,7 +29,14 @@ cd 03_exercices_realises\tp-evaluation\docker-advanced-tp
 .\run.ps1
 ```
 
-WordPress : http://localhost:8095
+Application : http://localhost:8080
+
+WordPress n'est pas joignable directement depuis l'hôte. Nginx transmet `Host`, `X-Real-IP`, `X-Forwarded-For`, `X-Forwarded-Proto` et `X-Forwarded-Host`, et joint le service `wordpress`.
+
+```powershell
+docker port gestion-interne-wordpress
+docker port gestion-interne-nginx
+```
 
 ## Vérifications réseau
 

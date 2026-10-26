@@ -5,6 +5,12 @@ services:
     image: nginx:1.27.5-alpine
     container_name: gestion-interne-nginx
     restart: unless-stopped
+    ports:
+      - "${HTTP_PORT}:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - wordpress
     networks:
       - proxy
       - app
@@ -13,8 +19,6 @@ services:
     image: wordpress:6.8.3-apache
     container_name: gestion-interne-wordpress
     restart: unless-stopped
-    ports:
-      - "${HTTP_PORT}:80"
     environment:
       WORDPRESS_DB_HOST: mariadb
       WORDPRESS_DB_USER: ${MARIADB_USER}
