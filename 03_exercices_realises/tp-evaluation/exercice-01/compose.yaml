@@ -1,0 +1,31 @@
+name: gestion-interne
+
+services:
+  nginx:
+    image: nginx:1.27.5-alpine
+    container_name: gestion-interne-nginx
+    restart: unless-stopped
+
+  wordpress:
+    image: wordpress:6.8.3-apache
+    container_name: gestion-interne-wordpress
+    restart: unless-stopped
+    ports:
+      - "${HTTP_PORT}:80"
+    environment:
+      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_USER: ${MARIADB_USER}
+      WORDPRESS_DB_PASSWORD: ${MARIADB_PASSWORD}
+      WORDPRESS_DB_NAME: ${MARIADB_DATABASE}
+    depends_on:
+      - mariadb
+
+  mariadb:
+    image: mariadb:11.8.3
+    container_name: gestion-interne-mariadb
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
