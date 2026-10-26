@@ -29,8 +29,10 @@ services:
     environment:
       WORDPRESS_DB_HOST: mariadb
       WORDPRESS_DB_USER: ${MARIADB_USER}
-      WORDPRESS_DB_PASSWORD: ${MARIADB_PASSWORD}
+      WORDPRESS_DB_PASSWORD_FILE: /run/secrets/mariadb_password
       WORDPRESS_DB_NAME: ${MARIADB_DATABASE}
+    secrets:
+      - mariadb_password
     depends_on:
       mariadb:
         condition: service_healthy
@@ -51,10 +53,13 @@ services:
     container_name: gestion-interne-mariadb
     restart: unless-stopped
     environment:
-      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_ROOT_PASSWORD_FILE: /run/secrets/mariadb_root_password
       MARIADB_DATABASE: ${MARIADB_DATABASE}
       MARIADB_USER: ${MARIADB_USER}
-      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+      MARIADB_PASSWORD_FILE: /run/secrets/mariadb_password
+    secrets:
+      - mariadb_root_password
+      - mariadb_password
     volumes:
       - mariadb-data:/var/lib/mysql
     healthcheck:
@@ -79,3 +84,9 @@ networks:
     name: gestion-interne-app
   data:
     name: gestion-interne-data
+
+secrets:
+  mariadb_root_password:
+    file: ./secrets/mariadb_root_password.txt
+  mariadb_password:
+    file: ./secrets/mariadb_password.txt
