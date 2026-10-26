@@ -10,6 +10,15 @@ Projet unique. Les exercices s'ajoutent dans ce dossier.
 - Exercice 4 : Nginx est le seul point d'entrée. Configuration dans `nginx/default.conf`. WordPress n'a aucun port publié.
 - Exercice 5 : healthchecks. WordPress attend MariaDB `healthy`, Nginx attend WordPress `healthy`.
 - Exercice 6 : mots de passe dans des secrets Compose (`secrets/*.txt`, ignorés par Git). Le Compose ne contient que les chemins `*_FILE`. Modèle : `.env.example`.
+- Exercice 7 : durcissement. Nginx tourne avec l'uid `101`, système de fichiers en lecture seule, toutes les capacités retirées. WordPress et MariaDB ont un filesystem en lecture seule hors volumes, des capacités réduites, et des limites mémoire / CPU. Aucun conteneur n'est `privileged`.
+
+| Service | Utilisateur | Lecture seule | Capacités | Limites | Exception |
+|---------|-------------|---------------|-----------|---------|-----------|
+| Nginx | `101` (nginx) | Oui, tmpfs sur `/tmp` et le cache | `cap_drop: ALL` | 128 Mo, 0,5 CPU | Écoute `8080` dans le conteneur : un processus non root ne peut pas lier le port 80. |
+| WordPress | root au démarrage, workers `www-data` | Oui, sauf le volume `/var/www/html` | `ALL` retirées, puis `NET_BIND_SERVICE`, `SETUID`, `SETGID`, `CHOWN`, `DAC_OVERRIDE` | 512 Mo, 1 CPU | L'image officielle lance Apache en root pour le port 80 puis abandonne les privilèges. Le volume reste inscriptible pour les médias. |
+| MariaDB | root au démarrage, serveur `mysql` | Oui, sauf le volume `/var/lib/mysql` | `ALL` retirées, puis `SETUID`, `SETGID`, `CHOWN`, `DAC_OVERRIDE`, `FOWNER` | 512 Mo, 1 CPU | L'entrypoint utilise ces capacités pour passer à l'utilisateur `mysql` et préparer le datadir. |
+
+Ces mesures réduisent la surface en cas de compromission : pas de mode privilégié sur l'hôte, peu de capacités noyau, pas d'écriture sur le système de fichiers de l'image, et pas de saturation CPU ou mémoire. `no-new-privileges` empêche un binaire de regagner des droits.
 
 Un conteneur `Up` a seulement son processus principal lancé. Il est opérationnel quand le healthcheck passe : MariaDB accepte une connexion et InnoDB est prêt, WordPress répond HTTP 200, Nginx sert le site. `depends_on: condition: service_healthy` n'agit qu'au démarrage.
 
