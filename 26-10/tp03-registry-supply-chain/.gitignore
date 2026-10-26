@@ -1,0 +1,3 @@
+.docker-ci/
+sbom.json
+*.tar
