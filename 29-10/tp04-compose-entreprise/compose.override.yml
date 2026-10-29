@@ -1,0 +1,38 @@
+services:
+  api:
+    environment:
+      LOG_LEVEL: debug
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../../26-10/tp01-optimisation-image/starter/shopapi/src:/app/src
+    command: ["node", "--watch", "src/server.js"]
+
+  db:
+    ports:
+      - "5432:5432"
+    networks:
+      - debug
+
+  traefik:
+    ports:
+      - "8080:8080"
+    command:
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.docker.network=shop_front
+      - --entrypoints.web.address=:80
+      - --ping=true
+      - --accesslog=true
+      - --api.insecure=true
+      - --api.dashboard=true
+
+  worker:
+    environment:
+      LOG_LEVEL: DEBUG
+    volumes:
+      - ../../26-10/tp02-buildkit-avance/starter/shop-worker/worker:/app/worker
+
+networks:
+  debug:
+    name: shop_debug

@@ -18,8 +18,7 @@ LABEL org.opencontainers.image.title="shopapi" \
       org.opencontainers.image.version="${APP_VERSION}" \
       org.opencontainers.image.revision="${GIT_SHA}" \
       org.opencontainers.image.source="https://github.com/shopsas/shopapi"
-RUN addgroup -g 1000 node && adduser -u 1000 -G node -S -D node \
-    && apk add --no-cache libcrypto3=3.5.9-r0 libssl3=3.5.9-r0
+RUN addgroup -g 1000 node && adduser -u 1000 -G node -S -D node
 WORKDIR /app
 ENV NODE_ENV=production \
     APP_VERSION=${APP_VERSION}
