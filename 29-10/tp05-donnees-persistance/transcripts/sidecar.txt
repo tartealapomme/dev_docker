@@ -1,0 +1,30 @@
+/backups/monthly/shop-latest.sql.gz
+/backups/monthly/shop-202610.sql.gz
+/backups/weekly/shop-latest.sql.gz
+/backups/weekly/shop-202644.sql.gz
+/backups/daily/shop-latest.sql.gz
+/backups/daily/shop-20261029.sql.gz
+/backups/last/shop-latest.sql.gz
+/backups/last/shop-20261029-133232.sql.gz
+dbbackup-1  | 2026/10/29 13:32:32 Running version: v0.0.11
+dbbackup-1  | 2026/10/29 13:32:32 new cron: @every 1m
+dbbackup-1  | 2026/10/29 13:32:32 Opening port 8080 for health checking
+dbbackup-1  | 2026/10/29 13:32:32 22 cmd: /backup.sh 
+dbbackup-1  | 2026/10/29 13:32:32 22: Creating dump of shop database from db...
+dbbackup-1  | 2026/10/29 13:32:32 22: Replacing daily backup /backups/daily/shop-20261029.sql.gz file this last backup...
+dbbackup-1  | 2026/10/29 13:32:32 22: '/backups/daily/shop-20261029.sql.gz' -> '/backups/last/shop-20261029-133232.sql.gz'
+dbbackup-1  | 2026/10/29 13:32:32 22: Replacing weekly backup /backups/weekly/shop-202644.sql.gz file this last backup...
+dbbackup-1  | 2026/10/29 13:32:32 22: '/backups/weekly/shop-202644.sql.gz' -> '/backups/last/shop-20261029-133232.sql.gz'
+dbbackup-1  | 2026/10/29 13:32:32 22: Replacing monthly backup /backups/monthly/shop-202610.sql.gz file this last backup...
+dbbackup-1  | 2026/10/29 13:32:32 22: '/backups/monthly/shop-202610.sql.gz' -> '/backups/last/shop-20261029-133232.sql.gz'
+dbbackup-1  | 2026/10/29 13:32:32 22: Point last backup file to this last backup...
+dbbackup-1  | 2026/10/29 13:32:32 22: '/backups/last/shop-latest.sql.gz' -> 'shop-20261029-133232.sql.gz'
+dbbackup-1  | 2026/10/29 13:32:32 22: Point latest daily backup to this last backup...
+dbbackup-1  | 2026/10/29 13:32:32 22: '/backups/daily/shop-latest.sql.gz' -> 'shop-20261029.sql.gz'
+dbbackup-1  | 2026/10/29 13:32:32 22: Point latest weekly backup to this last backup...
+dbbackup-1  | 2026/10/29 13:32:32 22: '/backups/weekly/shop-latest.sql.gz' -> 'shop-202644.sql.gz'
+dbbackup-1  | 2026/10/29 13:32:32 22: Point latest monthly backup to this last backup...
+dbbackup-1  | 2026/10/29 13:32:32 22: '/backups/monthly/shop-latest.sql.gz' -> 'shop-202610.sql.gz'
+dbbackup-1  | 2026/10/29 13:32:32 22: Cleaning older files for shop database from db...
+dbbackup-1  | 2026/10/29 13:32:32 22: SQL backup created successfully
+SIDECAR_OK

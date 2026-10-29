@@ -1,0 +1,5 @@
+db-1  | 
+db-1  | PostgreSQL Database directory appears to contain a database; Skipping initialization
+db-1  | 
+db-1  | 2026-10-29 13:33:12.490 UTC [1] FATAL:  database files are incompatible with server
+db-1  | 2026-10-29 13:33:12.490 UTC [1] DETAIL:  The data directory was initialized by PostgreSQL version 14, which is not compatible with this version 16.4.

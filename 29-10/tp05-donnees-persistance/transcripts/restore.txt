@@ -1,0 +1,11 @@
+CHECKSUM_BEFORE 100000 62f14890436e56a6a0ce4157a1f05a3c
+logical C:/Users/natha/Documents/ecole/M2/DevDocker/docker_ynov_10_26/29-10/tp05-donnees-persistance/backups/logical/shop-20261029T133136Z.dump
+raw C:/Users/natha/Documents/ecole/M2/DevDocker/docker_ynov_10_26/29-10/tp05-donnees-persistance/backups/raw/pgdata-20261029T133136Z.tar.gz
+DUMP C:/Users/natha/Documents/ecole/M2/DevDocker/docker_ynov_10_26/29-10/tp05-donnees-persistance/backups/logical/shop-20261029T133136Z.dump
+ orders |             checksum             
+--------+----------------------------------
+ 100000 | 62f14890436e56a6a0ce4157a1f05a3c
+(1 row)
+
+CHECKSUM_AFTER 100000 62f14890436e56a6a0ce4157a1f05a3c
+VERDICT_OK

@@ -1,0 +1,252 @@
+=== TP04 MOUNTS ===
+[{"Type":"bind","Source":"/run/desktop/mnt/host/c/Users/natha/Documents/ecole/M2/DevDocker/docker_ynov_10_26/29-10/tp04-compose-entreprise/db/init.sql","Destination":"/docker-entrypoint-initdb.d/001-init.sql","Mode":"ro","RW":false,"Propagation":"rprivate"},{"Type":"bind","Source":"C:\\Users\\natha\\Documents\\ecole\\M2\\DevDocker\\docker_ynov_10_26\\29-10\\tp04-compose-entreprise\\secrets\\db_password.txt","Destination":"/run/secrets/db_password","Mode":"","RW":false,"Propagation":"rprivate"},{"Type":"volume","Name":"shop_pgdata","Source":"/var/lib/docker/volumes/shop_pgdata/_data","Destination":"/var/lib/postgresql/data","Driver":"local","Mode":"rw","RW":true,"Propagation":""}]
+
+=== VOLUME shop_pgdata ===
+[
+    {
+        "CreatedAt": "2026-10-29T08:34:29Z",
+        "Driver": "local",
+        "Labels": {
+            "com.docker.compose.config-hash": "2e6965aae4be884527a3afdfd8a79c1df6e053b87c8af8d38f5a222324c8c722",
+            "com.docker.compose.project": "shop",
+            "com.docker.compose.version": "5.5.1",
+            "com.docker.compose.volume": "pgdata"
+        },
+        "Mountpoint": "/var/lib/docker/volumes/shop_pgdata/_data",
+        "Name": "shop_pgdata",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+=== COUCHE INSCRIVABLE ===
+Driver=overlayfs
+null
+=== DIFF prod /tmp (tmpfs) ===
+C /docker-entrypoint-initdb.d
+A /docker-entrypoint-initdb.d/001-init.sql
+C /run
+A /run/secrets
+A /run/secrets/db_password
+=== DF ===
+Images space usage:
+
+REPOSITORY                              TAG               IMAGE ID       CREATED         SIZE      SHARED SIZE   UNIQUE SIZE   CONTAINERS
+shop-worker                             local             7d42466bbbfb   5 hours ago     193MB     2B            192.6MB       1
+shopapi                                 local             a7fb6fbc0096   5 hours ago     179MB     12.97MB       166MB         0
+redis                                   7.4-alpine        8da19c7399dc   2 days ago      57.8MB    32B           57.79MB       1
+shopapi                                 1.4.2             78d25851d509   2 days ago      188MB     12.97MB       174.7MB       2
+worker                                  nocache           400009cc65ce   2 days ago      193MB     177.3MB       15.27MB       0
+worker                                  cachetest         f69a19eae6d5   2 days ago      193MB     177.3MB       15.19MB       0
+worker                                  1.0               33f60070240d   2 days ago      193MB     177.3MB       15.19MB       0
+<none>                                  <none>            a7a7b8f437fb   3 days ago      179MB     12.97MB       166MB         0
+shopapi                                 test              c67279605e92   3 days ago      276MB     12.97MB       263.4MB       0
+shopapi                                 legacy            e43fc07f5ddf   3 days ago      1.09GB    2B            1.094GB       0
+httpd                                   2.4-alpine        070da7661f0b   7 days ago      97.4MB    32B           97.36MB       0
+ex10-notes-app                          latest            e791fce3cba9   2 weeks ago     525MB     437.1MB       88.05MB       1
+ex09-logs-api                           latest            627f108d73d6   2 weeks ago     527MB     437.1MB       90.35MB       1
+ex09-crud-api                           latest            eded37c600ce   2 weeks ago     527MB     437.1MB       90.1MB        1
+ex08-dogs-api                           latest            c32beaedadd3   2 weeks ago     527MB     437.1MB       90.09MB       1
+kennel-mysql                            latest            e2086309e018   2 weeks ago     1.09GB    1.086GB       25.88kB       1
+ubuntu-ping                             latest            46f21560278e   2 weeks ago     213MB     117.4MB       95.12MB       1
+ex03-site                               latest            e48c9bf51f29   2 weeks ago     93.6MB    93.53MB       42.51kB       1
+ubuntu-nginx                            latest            978d640b3387   2 weeks ago     220MB     117.4MB       102.8MB       0
+moby/buildkit                           buildx-stable-1   cec9f139f45e   4 weeks ago     365MB     2B            364.9MB       1
+adminer                                 latest            74f29c416e14   4 weeks ago     164MB     12.93MB       151.3MB       1
+nginx                                   alpine            df221db836e1   5 weeks ago     94.4MB    93.53MB       906.9kB       1
+ubuntu                                  24.04             534baea6a22c   5 weeks ago     119MB     117.4MB       1.941MB       1
+postgres                                16-alpine         721873c34ceb   5 weeks ago     420MB     12.93MB       406.8MB       1
+amigoscode/2048                         latest            45a893ee6226   2 months ago    211MB     0B            210.8MB       1
+traefik                                 v3.6              31267173a15b   2 months ago    251MB     0B            251.5MB       1
+hadolint/hadolint                       latest            32dac94127fd   3 months ago    67.9MB    0B            67.88MB       0
+mysql                                   8.0               7dcddc01f13b   5 months ago    1.1GB     1.086GB       15.48MB       3
+alpine                                  3.20              d9e853e87e55   6 months ago    12.2MB    0B            12.18MB       0
+alpine                                  3.23.4            5b10f432ef3d   6 months ago    13.1MB    12.97MB       88.03kB       0
+wordpress                               6.8.3-apache      30bff39330d1   11 months ago   1.06GB    32B           1.055GB       1
+prodrigestivill/postgres-backup-local   16-alpine         08e7b70879af   13 months ago   428MB     0B            427.5MB       0
+mariadb                                 11.8.3            ae6119716eda   14 months ago   460MB     0B            459.6MB       1
+nginx                                   1.27.5-alpine     65645c7bb6a0   18 months ago   74.5MB    0B            74.47MB       1
+aquasec/trivy                           0.58.1            ab70a0220059   22 months ago   204MB     12.08MB       192.2MB       0
+anchore/syft                            v1.18.1           b8c170b8e51b   22 months ago   62MB      0B            62.01MB       0
+quay.io/skopeo/stable                   v1.16.1           94f5c5e26997   23 months ago   455MB     0B            454.9MB       0
+=== LAB DIFF ===
+ Network shoplab_back Creating 
+ Volume shoplab_pgdata Creating 
+ Network shoplab_back Creating 
+ Volume shoplab_pgdata Creating 
+ Volume shoplab_pgdata Created 
+ Volume shoplab_pgdata Created 
+ Network shoplab_back Created 
+ Network shoplab_back Created 
+ Container shoplab-db-1 Creating 
+ Container shoplab-db-1 Created 
+ Container shoplab-db-1 Starting 
+ Container shoplab-db-1 Started 
+ Container shoplab-db-1 Waiting 
+ Container shoplab-db-1 Healthy 
+C /run
+C /run/postgresql
+A /run/postgresql/.s.PGSQL.5432
+A /run/postgresql/.s.PGSQL.5432.lock
+A /run/secrets
+A /run/secrets/db_password
+C /tmp
+A /tmp/x
+=== DOWN GARDE LE VOLUME ===
+CREATE TABLE
+INSERT 0 1
+ Container shoplab-db-1 Stopping 
+ Container shoplab-db-1 Stopped 
+ Container shoplab-db-1 Removing 
+ Container shoplab-db-1 Removed 
+ Network shoplab_back Removing 
+ Network shoplab_back Removed 
+apres_down shoplab_pgdata /var/lib/docker/volumes/shoplab_pgdata/_data
+ Network shoplab_back Creating 
+ Network shoplab_back Creating 
+ Network shoplab_back Created 
+ Network shoplab_back Created 
+ Container shoplab-db-1 Creating 
+ Container shoplab-db-1 Created 
+ Container shoplab-db-1 Starting 
+ Container shoplab-db-1 Started 
+ Container shoplab-db-1 Waiting 
+ Container shoplab-db-1 Healthy 
+ marker_apres_down 
+-------------------
+                 1
+(1 row)
+
+=== RM GARDE LE VOLUME ===
+ Container shoplab-db-1 Stopping 
+ Container shoplab-db-1 Stopped 
+Going to remove shoplab-db-1
+ Container shoplab-db-1 Removing 
+ Container shoplab-db-1 Removed 
+apres_rm shoplab_pgdata
+ Container shoplab-db-1 Creating 
+ Container shoplab-db-1 Created 
+ Container shoplab-db-1 Starting 
+ Container shoplab-db-1 Started 
+ Container shoplab-db-1 Waiting 
+ Container shoplab-db-1 Healthy 
+ marker_apres_rm 
+-----------------
+               1
+(1 row)
+
+=== DOWN -V SUPPRIME ===
+ Container shoplab-db-1 Stopping 
+ Container shoplab-db-1 Stopped 
+ Container shoplab-db-1 Removing 
+ Container shoplab-db-1 Removed 
+ Network shoplab_back Removing 
+ Volume shoplab_pgdata Removing 
+ Volume shoplab_pgdata Removed 
+ Network shoplab_back Removed 
+VOLUME_SUPPRIME
+=== VOLUME ANONYME ===
+b14f9910dc8e255217d48d8783731c0b08108443b99efaf627f10dd3254a7acf
+ANON_VOLUME 101b543e26025f74bb86f39d35df65c52666ddd31714567e95bcf52577a3ab95
+pg-anon
+apres_rm 101b543e26025f74bb86f39d35df65c52666ddd31714567e95bcf52577a3ab95
+101b543e26025f74bb86f39d35df65c52666ddd31714567e95bcf52577a3ab95
+922bcdfb8b27b7aeafc99823a0cbc2de205f683dbff01e2428b9ad6e1186bd0f
+pg-anon
+ANON_SUPPRIME_PAR_RM_V
+=== INIT ===
+ Network shopinit_default Creating 
+ Network shopinit_default Creating 
+ Volume shopinit_pgdata Creating 
+ Volume shopinit_pgdata Creating 
+ Volume shopinit_pgdata Created 
+ Volume shopinit_pgdata Created 
+ Network shopinit_default Created 
+ Network shopinit_default Created 
+ Container shopinit-db-1 Creating 
+ Container shopinit-db-1 Created 
+ Container shopinit-db-1 Starting 
+ Container shopinit-db-1 Started 
+ Container shopinit-db-1 Waiting 
+ Container shopinit-db-1 Healthy 
+INSERT 0 1
+ id |  note  
+----+--------
+  1 | init
+  2 | manuel
+(2 rows)
+
+ Container shopinit-db-1 Restarting 
+ Container shopinit-db-1 Started 
+ Container shopinit-db-1 Running 
+ Container shopinit-db-1 Waiting 
+ Container shopinit-db-1 Healthy 
+APRES_RESTART
+ id |  note  
+----+--------
+  1 | init
+  2 | manuel
+(2 rows)
+
+ Container shopinit-db-1 Stopping 
+ Container shopinit-db-1 Stopped 
+ Container shopinit-db-1 Removing 
+ Container shopinit-db-1 Removed 
+ Network shopinit_default Removing 
+ Volume shopinit_pgdata Removing 
+ Volume shopinit_pgdata Removed 
+ Network shopinit_default Removed 
+ Network shopinit_default Creating 
+ Volume shopinit_pgdata Creating 
+ Network shopinit_default Creating 
+ Volume shopinit_pgdata Creating 
+ Volume shopinit_pgdata Created 
+ Volume shopinit_pgdata Created 
+ Network shopinit_default Created 
+ Network shopinit_default Created 
+ Container shopinit-db-1 Creating 
+ Container shopinit-db-1 Created 
+ Container shopinit-db-1 Starting 
+ Container shopinit-db-1 Started 
+ Container shopinit-db-1 Waiting 
+ Container shopinit-db-1 Healthy 
+APRES_DOWN_V
+ id | note 
+----+------
+  1 | init
+(1 row)
+
+ Container shopinit-db-1 Stopping 
+ Container shopinit-db-1 Stopped 
+ Container shopinit-db-1 Removing 
+ Container shopinit-db-1 Removed 
+ Network shopinit_default Removing 
+ Network shopinit_default Removed 
+=== PRUNE ===
+ Network shopinit_default Creating 
+ Network shopinit_default Creating 
+ Network shopinit_default Created 
+ Network shopinit_default Created 
+ Container shopinit-db-1 Creating 
+ Container shopinit-db-1 Created 
+ Container shopinit-db-1 Starting 
+ Container shopinit-db-1 Started 
+ Container shopinit-db-1 Waiting 
+ Container shopinit-db-1 Healthy 
+ Container shopinit-db-1 Stopping 
+ Container shopinit-db-1 Stopped 
+ Container shopinit-db-1 Removing 
+ Container shopinit-db-1 Removed 
+ Network shopinit_default Removing 
+ Network shopinit_default Removed 
+avant_prune shopinit_pgdata
+Total reclaimed space: 0B
+PRUNE_ECHOUE
+=== PRUNE CORRIGE ===
+avant shopinit_pgdata
+Total reclaimed space: 0B
+sans_all shopinit_pgdata
+Deleted Volumes:
+shopinit_pgdata
+
+Total reclaimed space: 47.79MB
+PRUNE_ALL_OK
